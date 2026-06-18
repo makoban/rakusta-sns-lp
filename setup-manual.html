@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楽スタ / ココ♡トモSNS 初期設定運用フロー</title>
+    <meta name="description" content="楽スタ・ココ♡トモSNSの初期設定で、お客様所有にすべきもの、運用側が設定するもの、ブラウザ操作が必要なもの、自動化できるものを整理した社内向けマニュアルです。">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="canonical" href="https://rakusta-sns.com/setup-manual.html">
+    <link rel="icon" href="data:,">
+    <style>
+        :root {
+            --ink: #172a32;
+            --muted: #5a6870;
+            --line: #dbe3e6;
+            --paper: #fbfcf8;
+            --white: #ffffff;
+            --teal: #087b75;
+            --teal-soft: #e2f4f1;
+            --blue: #315f89;
+            --blue-soft: #e7f0f8;
+            --amber: #b26b00;
+            --amber-soft: #fff1d8;
+            --red: #a33b34;
+            --red-soft: #ffe7e3;
+            --green: #287b4e;
+            --green-soft: #e6f5eb;
+            --shadow: 0 14px 34px rgba(23, 42, 50, .10);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .hero > *,
+        .section-head > *,
+        .card,
+        .status-board,
+        .status-row > *,
+        .lane-item > *,
+        .form-panel,
+        .output-panel {
+            min-width: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+            line-height: 1.75;
+            letter-spacing: 0;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--teal);
+        }
+
+        .wrap {
+            width: min(1160px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        header {
+            background: #f3f7f3;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+            gap: 36px;
+            align-items: center;
+            min-height: 560px;
+            padding: 52px 0 34px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 2px 10px;
+            color: var(--teal);
+            background: var(--teal-soft);
+            border: 1px solid rgba(8, 123, 117, .18);
+            border-radius: 999px;
+            font-size: .86rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 18px 0 16px;
+            font-size: clamp(2.1rem, 4vw, 4.6rem);
+            line-height: 1.08;
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+            word-break: break-all;
+        }
+
+        .lead {
+            max-width: 680px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            overflow-wrap: anywhere;
+            word-break: break-all;
+        }
+
+        p,
+        td,
+        th,
+        .card,
+        .section-head,
+        .status-row > div {
+            overflow-wrap: anywhere;
+            word-break: break-all;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .mobile-break {
+            display: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 9px 16px;
+            border: 1px solid var(--teal);
+            border-radius: var(--radius);
+            background: var(--teal);
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn.secondary {
+            color: var(--teal);
+            background: transparent;
+        }
+
+        .status-board {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .status-board h2 {
+            margin: 0 0 12px;
+            font-size: 1.05rem;
+        }
+
+        .status-row {
+            display: grid;
+            grid-template-columns: 108px 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+            border-top: 1px solid var(--line);
+            overflow-wrap: anywhere;
+            word-break: break-all;
+        }
+
+        .status-row:first-of-type {
+            border-top: 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 30px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .badge.browser {
+            color: var(--amber);
+            background: var(--amber-soft);
+        }
+
+        .badge.auto {
+            color: var(--green);
+            background: var(--green-soft);
+        }
+
+        .badge.owner {
+            color: var(--blue);
+            background: var(--blue-soft);
+        }
+
+        .badge.stop {
+            color: var(--red);
+            background: var(--red-soft);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(251, 252, 248, .94);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .nav-inner a {
+            flex: 0 0 auto;
+            min-height: 36px;
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            color: var(--ink);
+            background: #fff;
+            font-size: .9rem;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 30px 0 80px;
+        }
+
+        section {
+            margin: 34px 0;
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, .82fr) minmax(280px, .38fr);
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: clamp(1.65rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            min-height: 100%;
+            padding: 18px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 20px rgba(23, 42, 50, .05);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.08rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .callout {
+            padding: 16px 18px;
+            border: 1px solid var(--line);
+            border-left: 5px solid var(--teal);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+
+        .callout strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .swimlane {
+            display: grid;
+            gap: 10px;
+        }
+
+        .lane-item {
+            display: grid;
+            grid-template-columns: 48px minmax(130px, .45fr) minmax(0, 1fr) 126px;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+        }
+
+        .step-num {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .lane-title {
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .lane-note {
+            color: var(--muted);
+            font-size: .94rem;
+            overflow-wrap: anywhere;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #eff5f4;
+            font-size: .9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .mini {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .tool {
+            display: grid;
+            grid-template-columns: minmax(0, .92fr) minmax(320px, .68fr);
+            gap: 16px;
+            align-items: start;
+        }
+
+        .form-panel,
+        .output-panel {
+            padding: 18px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 20px rgba(23, 42, 50, .05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        label {
+            display: grid;
+            gap: 5px;
+            color: var(--ink);
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid #cbd6da;
+            border-radius: var(--radius);
+            color: var(--ink);
+            background: #fff;
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 142px;
+            resize: vertical;
+        }
+
+        .checks {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .check {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fbfdfc;
+            font-weight: 600;
+        }
+
+        .check input {
+            width: 18px;
+            min-height: 18px;
+            margin-top: 4px;
+        }
+
+        .output {
+            min-height: 360px;
+            white-space: pre-wrap;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: .88rem;
+            line-height: 1.65;
+        }
+
+        .sources {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .source-link {
+            display: block;
+            min-height: 58px;
+            padding: 11px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+            text-decoration: none;
+        }
+
+        footer {
+            padding: 24px 0 42px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            background: #f3f7f3;
+            font-size: .9rem;
+        }
+
+        code {
+            padding: 1px 5px;
+            border-radius: 5px;
+            background: #eef3f4;
+            font-size: .92em;
+        }
+
+        @media (max-width: 900px) {
+            .hero,
+            .section-head,
+            .tool,
+            .grid-3,
+            .grid-2,
+            .sources {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 34px;
+            }
+
+            h1 {
+                font-size: clamp(1.9rem, 10.5vw, 2.45rem);
+            }
+
+            .mobile-break {
+                display: block;
+            }
+
+            .status-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .lane-item {
+                grid-template-columns: 44px 1fr;
+            }
+
+            .lane-note,
+            .lane-item .badge {
+                grid-column: 2;
+            }
+
+            .form-grid,
+            .checks {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap hero">
+            <div>
+                <span class="eyebrow">社内向け / 直接URL共有用</span>
+                <h1>初期設定は、<br class="mobile-break">所有と運用を<br class="mobile-break">分ける。</h1>
+                <p class="lead">楽スタ・ココ♡トモSNSの初期設定フローです。<br class="mobile-break">お客様に用意してもらうもの、<br class="mobile-break">我々が使うアカウント、<br class="mobile-break">ブラウザ必須作業、<br class="mobile-break">自動化できる作業を整理します。</p>
+                <div class="hero-actions">
+                    <a class="btn" href="#flow">フローを見る</a>
+                    <a class="btn secondary" href="#setup-tool">設定メモを作る</a>
+                </div>
+            </div>
+            <div class="status-board" aria-label="運用方針の要約">
+                <h2>標準方針</h2>
+                <div class="status-row">
+                    <span class="badge owner">所有</span>
+                    <div>FBページ、Instagram、LINE公式は<br class="mobile-break">お客様資産として作る。</div>
+                </div>
+                <div class="status-row">
+                    <span class="badge auto">運用</span>
+                    <div>我々はMeta/LINEの管理権限と<br class="mobile-break">API tokenで運用する。</div>
+                </div>
+                <div class="status-row">
+                    <span class="badge browser">初回</span>
+                    <div>SMS、本人確認、OAuth同意、<br class="mobile-break">初回接続だけは同席作業。</div>
+                </div>
+                <div class="status-row">
+                    <span class="badge stop">禁止</span>
+                    <div>パスワード、SMSコード、2FAコードを<br class="mobile-break">預からない。</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <a href="#policy">方針</a>
+            <a href="#minimum">最低限</a>
+            <a href="#flow">順番</a>
+            <a href="#boundaries">切り分け</a>
+            <a href="#automation">ツール案</a>
+            <a href="#setup-tool">設定メモ</a>
+            <a href="#sources">公式リンク</a>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        <section id="policy">
+            <div class="section-head">
+                <div>
+                    <h2>推奨プラン</h2>
+                </div>
+                <p>本番顧客が増える前提では「お客様所有 + 我々が運用権限」を標準にします。</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <span class="badge owner">お客様所有</span>
+                    <h3>顧客資産として残す</h3>
+                    <p>個人Facebook、Facebookページ、Instagram、LINE公式はお客様側の資産にします。解約や移管が起きても整理しやすくなります。</p>
+                </article>
+                <article class="card">
+                    <span class="badge auto">我々運用</span>
+                    <h3>権限で作業する</h3>
+                    <p>Meta Businessのパートナー/管理者権限、LINE公式の管理者権限、ココ♡トモSNSの管理者権限で日常運用します。</p>
+                </article>
+                <article class="card">
+                    <span class="badge browser">初回だけ同席</span>
+                    <h3>SMSは初回に寄せる</h3>
+                    <p>SMSや2FAは初回作成、権限付与、再OAuth、復旧時だけに寄せます。通常投稿運用で毎回SMSを求めない設計にします。</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="minimum">
+            <div class="section-head">
+                <div>
+                    <h2>お客様から最低限もらうもの</h2>
+                </div>
+                <p>画像、カバー、紹介文、住所、営業時間、Webサイトは後回しで構いません。</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>分類</th>
+                        <th>最低限</th>
+                        <th>理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>個人</td>
+                        <td>既存の個人Facebookにログインできる状態</td>
+                        <td>Facebookページ作成、Meta Business Suite、権限付与の土台です。</td>
+                    </tr>
+                    <tr>
+                        <td>個人</td>
+                        <td>SMS/2FAを受け取れる状態</td>
+                        <td>初回接続や不審ログイン判定時に本人確認が出ます。コードは預かりません。</td>
+                    </tr>
+                    <tr>
+                        <td>店舗</td>
+                        <td>店舗名または会社名、業種カテゴリ</td>
+                        <td>Facebookページ、Instagram、LINE公式、ココ♡トモSNS店舗名に使います。</td>
+                    </tr>
+                    <tr>
+                        <td>店舗</td>
+                        <td>最終管理用メール、最終管理用電話番号</td>
+                        <td>復旧先です。我々の番号で量産すると、制限や移管トラブルが増えます。</td>
+                    </tr>
+                    <tr>
+                        <td>店舗</td>
+                        <td>希望Instagramユーザー名、LINE公式アカウント名</td>
+                        <td>初回作成時に必要です。第2候補、第3候補もあると止まりにくいです。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="flow">
+            <div class="section-head">
+                <div>
+                    <h2>初期設定フロー</h2>
+                </div>
+                <p>外部SNSの初回同意を先に済ませ、その後にココ♡トモSNSへ設定値を入れます。</p>
+            </div>
+            <div class="swimlane">
+                <div class="lane-item">
+                    <div class="step-num">1</div>
+                    <div class="lane-title">個人Facebook確認</div>
+                    <div class="lane-note">お客様がログインできること、SMS/2FAを受け取れることだけ確認します。</div>
+                    <span class="badge browser">お客様同席</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">2</div>
+                    <div class="lane-title">Facebookページ作成</div>
+                    <div class="lane-note">店舗名とカテゴリだけで最低限作成します。画像や説明文は後から追加します。</div>
+                    <span class="badge browser">ブラウザ</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">3</div>
+                    <div class="lane-title">Instagram作成/ビジネス化</div>
+                    <div class="lane-note">管理用メールまたは電話、ユーザー名、年齢確認を入力し、プロアカウント/ビジネスへ切り替えます。</div>
+                    <span class="badge browser">ブラウザ</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">4</div>
+                    <div class="lane-title">Meta接続/権限付与</div>
+                    <div class="lane-note">FacebookページとInstagramを接続し、我々のBusiness/担当者に必要権限を付けます。</div>
+                    <span class="badge browser">同意必須</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">5</div>
+                    <div class="lane-title">LINE公式/Messaging API</div>
+                    <div class="lane-note">LINE公式を作成し、Messaging APIを有効化、Webhook URLとtokenを確認します。</div>
+                    <span class="badge browser">初回のみ</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">6</div>
+                    <div class="lane-title">ココ♡トモSNS店舗作成</div>
+                    <div class="lane-note">店舗レコード、slug、Instagram ID、LINE設定、投稿時刻を我々側で登録します。</div>
+                    <span class="badge auto">自動可</span>
+                </div>
+                <div class="lane-item">
+                    <div class="step-num">7</div>
+                    <div class="lane-title">実テスト</div>
+                    <div class="lane-note">LINEで写真送信、投稿生成、Instagram非公開コンテナ、必要時だけ公開投稿まで確認します。</div>
+                    <span class="badge auto">運用側</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="boundaries">
+            <div class="section-head">
+                <div>
+                    <h2>ブラウザ必須と自動化可能</h2>
+                </div>
+                <p>「できないこと」を先に固定すると、マニュアルが嘘になりにくくなります。</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ブラウザ必須</th>
+                                <th>理由</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Facebookページ初回作成</td><td>個人FacebookログインとMeta確認が絡みます。</td></tr>
+                            <tr><td>Instagram新規作成</td><td>メール/SMS、年齢確認、CAPTCHAが出ます。</td></tr>
+                            <tr><td>Instagramビジネス化/ページ接続</td><td>Meta側の権限と同意が必要です。</td></tr>
+                            <tr><td>LINE公式作成/Messaging API初回有効化</td><td>Official Account ManagerとLINE Developersの初回操作が必要です。</td></tr>
+                            <tr><td>OAuth再同意、SMS、2FA</td><td>本人確認なので自動化対象にしません。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>自動化/半自動化しやすい</th>
+                                <th>方法</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>ココ♡トモSNS店舗作成</td><td><code>POST /api/franchises</code></td></tr>
+                            <tr><td>SNS設定投入</td><td><code>PUT /api/franchises/{id}/sns-settings</code></td></tr>
+                            <tr><td>Instagram ID/投稿疎通確認</td><td>Meta Graph API</td></tr>
+                            <tr><td>LINE Webhook/返信/画像取得</td><td>LINE Messaging API</td></tr>
+                            <tr><td>設定値まとめ、URL発行</td><td>社内ツールで自動生成可能</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="automation">
+            <div class="section-head">
+                <div>
+                    <h2>作る価値があるツール</h2>
+                </div>
+                <p>最初から全自動ではなく、手戻りを減らす「セットアップ補助ツール」から作るのが現実的です。</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <span class="badge auto">Phase 1</span>
+                    <h3>設定メモ生成</h3>
+                    <p>店舗名、slug、Instagram候補、LINE名を入れると、依頼文、チェックリスト、発行予定URL、ココ♡トモSNS投入用JSONを作る。</p>
+                </article>
+                <article class="card">
+                    <span class="badge auto">Phase 2</span>
+                    <h3>社内API投入</h3>
+                    <p>管理者ログイン後、ココ♡トモSNSに店舗を作成し、SNS設定を投入する。外部SNSの作成はしない。</p>
+                </article>
+                <article class="card">
+                    <span class="badge browser">Phase 3</span>
+                    <h3>接続診断</h3>
+                    <p>Meta/LINEのIDとtokenが揃った後、投稿前診断、Webhook診断、公開URL確認を自動で実行する。</p>
+                </article>
+            </div>
+            <div class="callout" style="margin-top:14px;">
+                <strong>作らない方がよい自動化</strong>
+                Facebook個人アカウント作成、SMSコード入力、2FA入力、本人確認、OAuth同意の自動突破。ここは規約・復旧・所有権の問題が出るため、人の同席作業として残します。
+            </div>
+        </section>
+
+        <section id="setup-tool">
+            <div class="section-head">
+                <div>
+                    <h2>簡易セットアップメモ作成</h2>
+                </div>
+                <p>ここに入力した内容は保存されません。ブラウザ内で次の作業メモを作るだけです。</p>
+            </div>
+            <div class="tool">
+                <div class="form-panel">
+                    <div class="form-grid">
+                        <label>店舗名
+                            <input id="shopName" type="text" placeholder="例: 楽スタ デモ店舗">
+                        </label>
+                        <label>業種カテゴリ
+                            <input id="category" type="text" placeholder="例: 医療 / 介護 / 教室 / 美容">
+                        </label>
+                        <label>管理用メール
+                            <input id="email" type="email" placeholder="例: shop.sns@example.com">
+                        </label>
+                        <label>電話番号メモ
+                            <input id="phone" type="text" placeholder="例: お客様SMS可 / 末尾1234">
+                        </label>
+                        <label>Instagram候補
+                            <input id="instagram" type="text" placeholder="例: sample_shop_official">
+                        </label>
+                        <label>LINE公式名
+                            <input id="lineName" type="text" placeholder="例: 店舗名 公式">
+                        </label>
+                        <label>ココ♡トモSNS slug
+                            <input id="slug" type="text" placeholder="例: sample-shop">
+                        </label>
+                        <label>担当メモ
+                            <input id="ownerMemo" type="text" placeholder="例: 初回同席は代表者">
+                        </label>
+                    </div>
+
+                    <div class="checks">
+                        <label class="check"><input type="checkbox" data-step="fbLogin">個人Facebookログイン確認</label>
+                        <label class="check"><input type="checkbox" data-step="fbPage">Facebookページ作成</label>
+                        <label class="check"><input type="checkbox" data-step="ig">Instagram作成</label>
+                        <label class="check"><input type="checkbox" data-step="igBiz">Instagramビジネス化</label>
+                        <label class="check"><input type="checkbox" data-step="meta">Meta接続/権限付与</label>
+                        <label class="check"><input type="checkbox" data-step="line">LINE公式作成</label>
+                        <label class="check"><input type="checkbox" data-step="messaging">Messaging API有効化</label>
+                        <label class="check"><input type="checkbox" data-step="kokotomo">ココ♡トモSNS店舗作成</label>
+                        <label class="check"><input type="checkbox" data-step="tokens">LINE/Instagram連携値登録</label>
+                        <label class="check"><input type="checkbox" data-step="test">実テスト完了</label>
+                    </div>
+                </div>
+
+                <div class="output-panel">
+                    <button class="btn" type="button" id="copyOutput">メモをコピー</button>
+                    <textarea class="output" id="output" readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="sources">
+            <div class="section-head">
+                <div>
+                    <h2>公式リンク</h2>
+                </div>
+                <p>画面名や権限名は変わるため、作業時は公式画面を優先します。</p>
+            </div>
+            <div class="sources">
+                <a class="source-link" href="https://www.facebook.com/business/help/1717412048538897">Meta Business Portfolio: パートナーへ資産アクセス付与</a>
+                <a class="source-link" href="https://developers.facebook.com/docs/instagram-platform/overview/">Instagram Platform: プロアカウント向けAPI概要</a>
+                <a class="source-link" href="https://developers.facebook.com/docs/instagram-platform/content-publishing/">Instagram Content Publishing: API投稿</a>
+                <a class="source-link" href="https://developers.line.biz/en/docs/messaging-api/overview/">LINE Messaging API: 概要</a>
+                <a class="source-link" href="https://developers.line.biz/en/reference/messaging-api/">LINE Messaging API: Reference</a>
+                <a class="source-link" href="https://developers.line.biz/en/docs/messaging-api/getting-started/">LINE Messaging API: はじめ方</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p>このページは直接URL共有用です。パスワード、SMSコード、2FAコード、LINE Channel secret、Instagram access token、Meta App Secretは入力しないでください。</p>
+        </div>
+    </footer>
+
+    <script>
+        const steps = [
+            ["fbLogin", "お客様の個人FacebookログインとSMS/2FA確認"],
+            ["fbPage", "Facebookページ作成"],
+            ["ig", "Instagramアカウント作成"],
+            ["igBiz", "Instagramビジネス化"],
+            ["meta", "FacebookページとInstagram接続、Meta権限付与"],
+            ["line", "LINE公式アカウント作成"],
+            ["messaging", "Messaging API有効化、Webhook確認"],
+            ["kokotomo", "ココ♡トモSNS店舗作成"],
+            ["tokens", "LINE/Instagram連携値登録"],
+            ["test", "LINE写真送信とInstagram投稿テスト"]
+        ];
+
+        const fields = ["shopName", "category", "email", "phone", "instagram", "lineName", "slug", "ownerMemo"];
+        const inputEls = fields.map((id) => document.getElementById(id));
+        const checks = Array.from(document.querySelectorAll("[data-step]"));
+        const output = document.getElementById("output");
+        const copyButton = document.getElementById("copyOutput");
+
+        function value(id, fallback) {
+            const element = document.getElementById(id);
+            const raw = element ? element.value.trim() : "";
+            return raw || fallback;
+        }
+
+        function checked(id) {
+            const element = document.querySelector(`[data-step="${id}"]`);
+            return Boolean(element && element.checked);
+        }
+
+        function nextStep() {
+            const item = steps.find(([id]) => !checked(id));
+            return item ? item[1] : "全ステップ完了。公開投稿と運用開始判断へ進む";
+        }
+
+        function buildMemo() {
+            const slug = value("slug", "未設定");
+            const shopName = value("shopName", "未設定");
+            const category = value("category", "未設定");
+            const instagram = value("instagram", "未設定");
+            const lineName = value("lineName", "未設定");
+            const email = value("email", "未設定");
+            const phone = value("phone", "未設定");
+            const ownerMemo = value("ownerMemo", "未設定");
+            const customerUrl = slug === "未設定" ? "未設定" : `https://kokotomo-sns.bantex.jp/${slug}`;
+
+            const remaining = steps
+                .filter(([id]) => !checked(id))
+                .map(([, label], index) => `${index + 1}. ${label}`)
+                .join("\n") || "なし";
+
+            const done = steps
+                .filter(([id]) => checked(id))
+                .map(([, label]) => `- ${label}`)
+                .join("\n") || "- なし";
+
+            const payload = {
+                name: shopName,
+                category,
+                sns_dashboard_slug: slug,
+                instagram_username: instagram,
+                line_official_account_name: lineName,
+                customer_contact_email: email,
+                phone_note: phone
+            };
+
+            output.value =
+`楽スタ / ココ♡トモSNS 初期設定メモ
+
+店舗名: ${shopName}
+業種: ${category}
+管理用メール: ${email}
+電話番号メモ: ${phone}
+Instagram候補: ${instagram}
+LINE公式名: ${lineName}
+ココ♡トモSNS slug: ${slug}
+顧客URL: ${customerUrl}
+担当メモ: ${ownerMemo}
+
+次にやること:
+${nextStep()}
+
+完了済み:
+${done}
+
+残タスク:
+${remaining}
+
+お客様に依頼すること:
+- 個人Facebookへログインできる状態で同席
+- SMS/2FAが出た場合はお客様本人が入力
+- パスワード、SMSコード、2FAコードは共有しない
+
+こちら側で設定すること:
+- Meta Businessで必要権限を確認
+- LINE Messaging APIとWebhookを確認
+- ココ♡トモSNSに店舗とSNS設定を登録
+- tokenやsecretは安全なSecret管理先へ登録
+
+ココ♡トモSNS投入用メモ:
+${JSON.stringify(payload, null, 2)}
+`;
+        }
+
+        inputEls.forEach((element) => element.addEventListener("input", buildMemo));
+        checks.forEach((element) => element.addEventListener("change", buildMemo));
+        copyButton.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(output.value);
+                copyButton.textContent = "コピー済み";
+                window.setTimeout(() => {
+                    copyButton.textContent = "メモをコピー";
+                }, 1600);
+            } catch (error) {
+                output.focus();
+                output.select();
+            }
+        });
+
+        buildMemo();
+    </script>
+</body>
+</html>
