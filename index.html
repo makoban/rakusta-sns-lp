@@ -1166,8 +1166,11 @@
             }
 
             .nav {
-                min-height: 64px;
+                flex-wrap: wrap;
+                justify-content: center;
+                min-height: 96px;
                 gap: 8px;
+                padding: 8px 0 10px;
             }
 
             .nav-links {
@@ -1187,14 +1190,18 @@
             }
 
             .nav-actions {
-                gap: 5px;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                width: 100%;
+                gap: 6px;
                 min-width: 0;
             }
 
             .nav-cta {
+                width: 100%;
                 min-height: 34px;
-                padding: 7px 8px;
-                font-size: .72rem;
+                padding: 7px 6px;
+                font-size: .7rem;
                 box-shadow: none;
             }
 
@@ -1207,11 +1214,11 @@
             }
 
             .contact-cta {
-                display: none;
+                display: inline-flex;
             }
 
             .instagram-cta {
-                display: none;
+                display: inline-flex;
             }
 
             .hero {
@@ -1347,7 +1354,7 @@
                     <span class="label-wide">インスタリンク</span>
                     <span class="label-narrow">インスタ</span>
                 </a>
-                <a href="mailto:info@ky-bx.com" class="nav-cta contact-cta">問い合わせ</a>
+                <a href="mailto:info@ky-bx.com" class="nav-cta contact-cta" aria-label="楽スタへお問い合わせ">お問い合わせ</a>
             </div>
         </div>
     </header>
@@ -1545,7 +1552,7 @@
     </main>
 
     <footer>
-        <div class="wrap">楽スタ / 販売元: 共同メディア有限会社 / v2.139</div>
+        <div class="wrap">楽スタ / 販売元: 共同メディア有限会社 / v2.140</div>
     </footer>
 </body>
 </html>
