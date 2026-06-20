@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>楽スタ｜LINEで写真を送るだけのSNS投稿支援</title>
-    <meta name="description" content="楽スタは、保育園・介護・医療・教室向けのSNS投稿支援サービスです。LINEで画像や動画を送るだけで、AIがInstagram投稿文、ハッシュタグ、写真の見栄え、顔ぼかし候補、投稿前確認を支援します。">
+    <title>楽スタ｜LINE投稿するだけでinstagram完了</title>
+    <meta name="description" content="楽スタは、子育て・介護・医療・教室に強いSNS投稿サービスです。写真・動画をLINEで送るだけで、AIがInstagram投稿文、ハッシュタグ、画像加工、投稿前確認を支援します。">
     <meta name="keywords" content="楽スタ,らくすた,Rakusuta,楽スタ SNS,楽スタ Instagram,LINE SNS投稿,Instagram投稿支援,インスタ投稿支援,保育園 SNS,介護 SNS,医療 SNS,教室 SNS">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://rakusta-sns.com/">
-    <link rel="icon" href="data:,">
+    <link rel="icon" href="./static/images/rakusuta/rakusuta-logo-icon-official.png">
     <meta property="og:site_name" content="楽スタ">
-    <meta property="og:title" content="楽スタ｜LINEで写真を送るだけのSNS投稿支援">
-    <meta property="og:description" content="保育園・介護・医療・教室のSNS投稿を、LINE素材送信とAI投稿文作成で支援します。">
+    <meta property="og:title" content="楽スタ｜LINE投稿するだけでinstagram完了">
+    <meta property="og:description" content="写真・動画を送るだけ。LINEが使える人ならSNS担当になれる、子育て・介護・医療・教室向けSNS投稿サービスです。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rakusta-sns.com/">
-    <meta property="og:image" content="https://rakusta-sns.com/static/images/rakusuta/rakusuta-flyer-hero-lineonly.jpg">
+    <meta property="og:image" content="https://rakusta-sns.com/static/images/rakusuta/rakusuta-lp-20260619-og.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="楽スタ｜LINEで写真を送るだけのSNS投稿支援">
-    <meta name="twitter:description" content="保育園・介護・医療・教室のInstagram投稿を、LINE素材送信とAI投稿文作成で支援します。">
-    <meta name="twitter:image" content="https://rakusta-sns.com/static/images/rakusuta/rakusuta-flyer-hero-lineonly.jpg">
+    <meta name="twitter:title" content="楽スタ｜LINE投稿するだけでinstagram完了">
+    <meta name="twitter:description" content="写真・動画を送るだけ。LINEが使える人ならSNS担当になれる、子育て・介護・医療・教室向けSNS投稿サービスです。">
+    <meta name="twitter:image" content="https://rakusta-sns.com/static/images/rakusuta/rakusuta-lp-20260619-og.jpg">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -59,8 +59,8 @@
                 "@type": "WebPage",
                 "@id": "https://rakusta-sns.com/#webpage",
                 "url": "https://rakusta-sns.com/",
-                "name": "楽スタ｜LINEで写真を送るだけのSNS投稿支援",
-                "description": "楽スタは、保育園・介護・医療・教室向けのSNS投稿支援サービスです。LINEで画像や動画を送るだけで、AIがInstagram投稿文、ハッシュタグ、写真の見栄え、顔ぼかし候補、投稿前確認を支援します。",
+                "name": "楽スタ｜LINE投稿するだけでinstagram完了",
+                "description": "楽スタは、子育て・介護・医療・教室に強いSNS投稿サービスです。写真・動画をLINEで送るだけで、AIがInstagram投稿文、ハッシュタグ、画像加工、投稿前確認を支援します。",
                 "isPartOf": {
                     "@id": "https://rakusta-sns.com/#website"
                 },
@@ -69,7 +69,7 @@
                 },
                 "primaryImageOfPage": {
                     "@type": "ImageObject",
-                    "url": "https://rakusta-sns.com/static/images/rakusuta/rakusuta-flyer-hero-lineonly.jpg"
+                    "url": "https://rakusta-sns.com/static/images/rakusuta/rakusuta-lp-20260619-og.jpg"
                 },
                 "breadcrumb": {
                     "@id": "https://rakusta-sns.com/#breadcrumb"
@@ -258,9 +258,17 @@
         }
 
         .brand {
-            display: grid;
-            gap: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
+            min-width: 0;
+        }
+
+        .brand-logo {
+            width: 148px;
+            height: auto;
+            flex: 0 0 auto;
         }
 
         .brand strong {
@@ -335,7 +343,7 @@
             overflow: hidden;
             background:
                 linear-gradient(90deg, rgba(255,253,248,.96) 0%, rgba(255,253,248,.82) 48%, rgba(255,253,248,.18) 100%),
-                url("./static/images/rakusuta/rakusuta-flyer-hero-medicalmap.jpg") center right / cover no-repeat;
+                url("./static/images/rakusuta/rakusuta-lp-20260619-hero.jpg") center right / cover no-repeat;
         }
 
         .hero.flyer-hero-section {
@@ -568,6 +576,8 @@
 
         .visual-frame {
             --frame-ratio: 1672 / 941;
+            width: 100%;
+            max-width: 100%;
             margin: 0;
             overflow: hidden;
             border: 1px solid rgba(23,49,56,.1);
@@ -577,12 +587,14 @@
         }
 
         .visual-frame picture {
-            aspect-ratio: var(--frame-ratio);
+            width: 100%;
+            max-width: 100%;
         }
 
         .visual-frame img {
             width: 100%;
-            height: 100%;
+            max-width: 100%;
+            height: auto;
             object-fit: contain;
             background: #fff;
         }
@@ -986,7 +998,7 @@
                 padding: 42px 0;
                 background:
                     linear-gradient(180deg, rgba(255,253,248,.95) 0%, rgba(255,253,248,.86) 60%, rgba(255,253,248,.36) 100%),
-                    url("./static/images/rakusuta/rakusuta-flyer-hero-medicalmap.jpg") center / cover no-repeat;
+                    url("./static/images/rakusuta/rakusuta-lp-20260619-hero.jpg") center / cover no-repeat;
             }
 
             .hero-inner,
@@ -1023,12 +1035,17 @@
                 font-size: 1.12rem;
             }
 
+            .brand-logo {
+                width: 124px;
+            }
+
             .brand small {
                 display: none;
             }
 
             .nav-actions {
                 gap: 6px;
+                min-width: 0;
             }
 
             .nav-cta {
@@ -1044,6 +1061,10 @@
 
             .nav-cta .label-narrow {
                 display: inline;
+            }
+
+            .contact-cta {
+                display: none;
             }
         }
 
@@ -1065,12 +1086,17 @@
                 font-size: 1.04rem;
             }
 
+            .brand-logo {
+                width: 112px;
+            }
+
             .brand small {
                 display: none;
             }
 
             .nav-actions {
                 gap: 5px;
+                min-width: 0;
             }
 
             .nav-cta {
@@ -1086,6 +1112,14 @@
 
             .nav-cta .label-narrow {
                 display: inline;
+            }
+
+            .contact-cta {
+                display: none;
+            }
+
+            .instagram-cta {
+                display: none;
             }
 
             .hero {
@@ -1169,7 +1203,7 @@
             }
 
             .visual-frame picture {
-                aspect-ratio: var(--frame-mobile-ratio, var(--frame-ratio));
+                width: 100%;
             }
 
             .visual-frame figcaption {
@@ -1192,8 +1226,8 @@
     <header>
         <div class="wrap nav">
             <a class="brand" href="#top" aria-label="楽スタトップ">
-                <strong>楽スタ</strong>
-                <small>子育て・介護・医療向けSNS投稿支援</small>
+                <img class="brand-logo" src="./static/images/rakusuta/rakusuta-logo-horizontal-official.png" alt="楽スタ">
+                <small>介護・福祉・保育・教育向けSNS投稿支援</small>
             </a>
             <nav class="nav-links" aria-label="ページ内ナビゲーション">
                 <a href="#screens">使い方</a>
@@ -1218,18 +1252,18 @@
     <main id="top">
         <section class="hero flyer-hero-section">
             <div class="wrap">
-                <h1 class="sr-only">東海地方で好評の「医療MAP」が製作｜LINEで写真を送るだけでインスタ投稿が劇的にラクになる楽スタ</h1>
+                <h1 class="sr-only">楽スタ｜LINE投稿するだけでinstagram完了</h1>
                 <div class="sr-only mobile-seo-copy">
-                    <p>楽スタは、子育て・介護・医療・教室向けのSNS自動投稿サービスです。保育園、認可外保育、児童発達支援、放課後等デイサービス、介護施設、デイサービス、訪問看護、クリニック、歯科、学習塾、英会話、音楽教室のInstagram投稿、LINEからの画像・動画送信、AI投稿文作成、ハッシュタグ作成、AI画像加工、投稿前確認を支援します。</p>
-                    <p>東海地方で医療MAP、介護マップ、子育てマップ、べんり帳を展開する共同メディア有限会社が、現場のSNS疲れを減らし、施設の雰囲気、日常活動、採用広報、保護者や家族向けの安心発信を続けやすくします。</p>
-                    <p>複数人がLINEの友だち登録をするだけで分担して画像・動画を送れるため、SNSリテラシーが高くないスタッフでも、LINE投稿ができれば投稿準備に参加できます。写真はAIが顔ぼかし候補を判断し、ぼかさない設定にも対応できます。</p>
+                    <p>創業41年。地域情報を発信し続けた共同メディア有限会社が、AIでSNS運用を変える、子育て・介護・医療・教室に強いSNS投稿サービスです。</p>
+                    <p>写真・動画を送るだけ。LINEが使える人ならSNS担当になれます。複数画像・動画OK、LINEで送るだけ、投稿前に確認できるため、SNSリテラシーが高くないスタッフでも投稿準備に参加できます。</p>
+                    <p>月額9,900円から利用でき、初期導入費用は通常10万円からキャンペーン5万円税込で案内しています。AIがInstagram投稿文、ハッシュタグ、画像加工、顔ぼかし候補、投稿前確認を支援します。</p>
                 </div>
                 <figure class="visual-frame hero-flyer" style="--frame-ratio: 1600 / 922; --frame-mobile-ratio: 864 / 1535;">
                     <picture>
-                        <source media="(max-width: 640px)" type="image/webp" srcset="./static/images/rakusuta/rakusuta-flyer-hero-lineonly-mobile.webp">
-                        <source media="(max-width: 640px)" srcset="./static/images/rakusuta/rakusuta-flyer-hero-lineonly-mobile.jpg">
-                        <source type="image/webp" srcset="./static/images/rakusuta/rakusuta-flyer-hero-lineonly.webp">
-                        <img src="./static/images/rakusuta/rakusuta-flyer-hero-lineonly.jpg" alt="東海地方で好評の医療MAPが製作する楽スタ。LINEで写真を送るだけでインスタ投稿が劇的にラクになり、子育て、介護、医療現場のSNS疲れを解消することを訴求するチラシ">
+                        <source media="(max-width: 640px)" type="image/webp" srcset="./static/images/rakusuta/rakusuta-lp-20260619-hero-mobile.webp">
+                        <source media="(max-width: 640px)" srcset="./static/images/rakusuta/rakusuta-lp-20260619-hero-mobile.jpg">
+                        <source type="image/webp" srcset="./static/images/rakusuta/rakusuta-lp-20260619-hero.webp">
+                        <img src="./static/images/rakusuta/rakusuta-lp-20260619-hero.jpg" alt="楽スタのTOP画像。創業41年、子育て・介護・医療・教室に強いSNS投稿サービスとして、LINE投稿するだけでinstagram完了と訴求">
                     </picture>
                 </figure>
             </div>
@@ -1369,7 +1403,7 @@
     </main>
 
     <footer>
-        <div class="wrap">楽スタ / 販売元: 共同メディア有限会社 / v2.127</div>
+        <div class="wrap">楽スタ / 販売元: 共同メディア有限会社 / v2.137</div>
     </footer>
 </body>
 </html>
