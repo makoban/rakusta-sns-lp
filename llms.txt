@@ -27,3 +27,9 @@ URL: https://rakusta-sns.com/
 愛知県清須市西枇杷島町城並1-8-3
 TEL: 052-506-9600
 Email: info@ky-bx.com
+
+## ポリシー
+
+- プライバシーポリシー: https://rakusta-sns.com/privacy.html
+- 利用規約: https://rakusta-sns.com/terms.html
+- データ削除説明: https://rakusta-sns.com/data-deletion.html
